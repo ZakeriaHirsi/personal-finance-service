@@ -22,6 +22,7 @@ func main() {
 
 	http.HandleFunc("/", HelloHandler)
 	http.HandleFunc("/health", HealthHandler)
+	http.HandleFunc("/ap3", Ap3Handler)
 
 	fmt.Println("Server listening on port", port)
 	log.Fatal(http.ListenAndServe(":"+port, nil))
@@ -34,6 +35,11 @@ func HelloHandler(w http.ResponseWriter, r *http.Request) {
 
 func HealthHandler(w http.ResponseWriter, r *http.Request) {
 	message := "Health check success"
+	encodeJSON(w, message)
+}
+
+func Ap3Handler(w http.ResponseWriter, r *http.Request) {
+	message := "Hello Ap3s"
 	encodeJSON(w, message)
 }
 
