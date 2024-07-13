@@ -1,0 +1,31 @@
+name: Deploy Go Application
+
+on: 
+    push:
+        branches:
+            - main #Deploy when pushed to this branch, can add more
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout Source
+              uses: actions/checkout@v4
+            - name: Create .env file
+              run: echo "PORT=${{ secrets.PORT }}" >> .env
+            - name: Login to docker hub
+              run: docker login -u ${{ secrets.DOCKER_USERNAME }} p ${{ secrets.DOCKER_PASSWORD }}
+            - name: Build docker image
+              run: docker build -t zakeriahirsi/go-app .
+            - name: Push image to docker hub
+              run: docker push zakeriahirsi/go-app:latest
+    deploy:
+        needs: build
+        runs-on: self-hosted
+        steps:
+            - name: Pull docker image
+              run: docker pull zakeriahirsi/go-app:latest
+            - name: Delete old container if exist
+              run: docker rm -f 
+            - name: Run docker container go-app-container
+              run: docker run -d -p 8080:8080 --name go-app-container zakeriahirsi/go-app
