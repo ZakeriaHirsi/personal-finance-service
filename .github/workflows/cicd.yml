@@ -23,6 +23,8 @@ jobs:
         needs: build
         runs-on: self-hosted
         steps:
+            - name: Login to docker hub
+              run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
             - name: Pull docker image
               run: docker pull zakeriahirsi/go-app:latest
             - name: Delete old container if exist
