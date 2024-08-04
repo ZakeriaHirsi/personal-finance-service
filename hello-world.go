@@ -33,7 +33,7 @@ func HelloHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func HealthHandler(w http.ResponseWriter, r *http.Request) {
-	message := "Health check success"
+	message := "Health check success from new ec2 instance"
 	encodeJSON(w, message)
 }
 
