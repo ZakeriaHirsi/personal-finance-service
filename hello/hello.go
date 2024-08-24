@@ -5,9 +5,14 @@ import (
 	"log"
 
 	"example.com/greetings"
+	"golang.org/x/example/hello/reverse"
 )
 
 func main() {
+	fmt.Println(reverse.String("Zak"))
+}
+
+func HelloGreeting() {
 	log.SetPrefix("greetings: ")
 	log.SetFlags(0)
 
