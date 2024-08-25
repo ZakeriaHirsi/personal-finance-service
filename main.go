@@ -25,9 +25,14 @@ func main() {
 
 	//Handlers
 	http.HandleFunc("/users", UserPoolHandler)
+	http.HandleFunc("/hello", HelloWorldHandler)
 
 	fmt.Println("Server listening on port", port)
 	log.Fatal(http.ListenAndServe(":"+port, nil))
+}
+
+func HelloWorldHandler(w http.ResponseWriter, r *http.Request) {
+	encodeJSON(w, "Hello World")
 }
 
 func UserPoolHandler(w http.ResponseWriter, r *http.Request) {
