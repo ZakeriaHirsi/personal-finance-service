@@ -7,3 +7,10 @@ docker rmi -f $(docker image ls -a -q)
 
 Once deleting old container, it should be zombie container so run within the EC2 instance:
 Run docker rm -f go-app-container 
+docker system prune
+
+When running into the error:
+write /var/lib/docker/tmp/GetImageBlob125147121: no space left on device
+
+Run: 
+docker system prune

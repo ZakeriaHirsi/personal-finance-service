@@ -32,7 +32,7 @@ func main() {
 }
 
 func HelloWorldHandler(w http.ResponseWriter, r *http.Request) {
-	encodeJSON(w, "Hello World")
+	encodeJSON(w, "Hello World!")
 }
 
 func UserPoolHandler(w http.ResponseWriter, r *http.Request) {
